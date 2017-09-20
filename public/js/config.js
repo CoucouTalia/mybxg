@@ -8,6 +8,7 @@ require.config({
         template:'artTemplate/template-web',
        common:'../js/common',
         login:'../js/login',
-        cookie:'jquery-cookie/jquery.cookie'
+        cookie:'jquery-cookie/jquery.cookie',
+        teacherlist:'../js/teacher-list'
     }
 });
