@@ -14,6 +14,7 @@ require.config({
        common:'../js/common',
         util:'../js/util',
         login:'../js/login',
+        settings:'../js/settings',
         cookie:'jquery-cookie/jquery.cookie',
         teacherlist:'../js/teacher-list',
         teacheradd:'../js/teacher-add'
