@@ -7,6 +7,10 @@ require.config({
        jquery:'jquery/jquery.min',
         template:'artTemplate/template-web',
         bootstrap:'bootstrap/js/bootstrap',
+        datepicker:'bootstrap-datepicker/js/bootstrap-datepicker',
+        language:'bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min',
+        validate:'validate/jquery-validate.min',
+        form:'jquery-form/jquery.form',
        common:'../js/common',
         util:'../js/util',
         login:'../js/login',
@@ -16,6 +20,12 @@ require.config({
     },
     shim:{
         bootstrap:{
+            deps:['jquery']
+        },
+        language:{
+            deps:['jquery','datepicker']
+        },
+        validate:{
             deps:['jquery']
         }
     }
