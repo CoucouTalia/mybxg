@@ -1,7 +1,10 @@
 /**
  * Created by admin on 2017/9/20.
  */
-define(['jquery','template','bootstrap'],function($,template){
+define(['jquery','template','util','bootstrap'],function($,template,util){
+   //设置导航菜单选中
+   //$('.aside .navs a[href="'+location.pathname+'"]').addClass('active');
+util.setMenu(location.pathname);
 //调用后台接口获取所有讲师数据
     $.ajax({
         type:'get',

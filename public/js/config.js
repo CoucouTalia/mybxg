@@ -20,7 +20,8 @@ require.config({
         settings:'../js/settings',
         cookie:'jquery-cookie/jquery.cookie',
         teacherlist:'../js/teacher-list',
-        teacheradd:'../js/teacher-add'
+        teacheradd:'../js/teacher-add',
+        index:'../js/index'
     },
     shim:{
         bootstrap:{
