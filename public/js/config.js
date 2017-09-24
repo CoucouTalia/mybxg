@@ -21,7 +21,8 @@ require.config({
         cookie:'jquery-cookie/jquery.cookie',
         teacherlist:'../js/teacher-list',
         teacheradd:'../js/teacher-add',
-        index:'../js/index'
+        index:'../js/index',
+        courselist:'../js/course-list'
     },
     shim:{
         bootstrap:{
