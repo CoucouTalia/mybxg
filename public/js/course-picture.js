@@ -16,6 +16,9 @@ define(['jquery','template','util','uploadify','jcrop','form'],function($,templa
            //console.log(data)
             var html=template('pictureTpl',data.result);
            $('#pictureInfo').html(html);
+            //选中图片
+            var img = $('.preview img');
+            var nowCrop=null;//保证实例裁切的唯一性
             //处理图片上传
             $('#myfile').uploadify({
                 width:80,
@@ -30,15 +33,18 @@ define(['jquery','template','util','uploadify','jcrop','form'],function($,templa
                 onUploadSuccess:function(a,b){
                     var obj=JSON.parse(b);
                    $('.preview img').attr('src',obj.result.path);
+                    cropImage();
+                    $('#cropBtn').text('保存图片').attr('data-flag',true);
                 }
             });
-            var img = $('.preview img');
+
             //处理图片裁切
             $('#cropBtn').click(function(){
                var flag=$(this).attr('data-flag');
                 if(flag){
+
                     //提交页面
-                    $('#cropForm').ajaxSubmit({
+                $('#cropForm').ajaxSubmit({
                         type:'post',
                         url:'/api/course/update/picture',
                         data:{cs_id:csId},
@@ -62,6 +68,9 @@ define(['jquery','template','util','uploadify','jcrop','form'],function($,templa
                 aspectRatio:2,
                  //setSelect:[20,20,200,100]
              },function(){
+                 //销毁当前实例
+                 nowCrop && nowCrop.destroy();
+                 nowCrop=this;
                 //显示缩略图
                  $('.thumb').html('');//清空原有图片
                  this.initComponent('Thumbnailer',{width:240,height:120,mythumb:'.thumb'});
@@ -84,13 +93,13 @@ define(['jquery','template','util','uploadify','jcrop','form'],function($,templa
              });
              //监控选区的变化
              img.parent().on('cropstart cropmove cropend',function(a,b,c){
+                 console.log(c)
                  //选区完成和变化的时候把对应的坐标数据填充到表单里
                 var aInput=$('#cropForm').find('input');
                  aInput.eq(0).val(c.x);
                  aInput.eq(1).val(c.y);
                  aInput.eq(2).val(c.w);
                  aInput.eq(3).val(c.h);
-
              });
          }
         }
